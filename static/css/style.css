@@ -156,12 +156,23 @@ body::before {
     padding: 4rem 0 2rem;
     text-align: center;
     z-index: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                url('../background.jpg') center center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo-container {
