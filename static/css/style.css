@@ -154,24 +154,47 @@ body::before {
 .header-section {
     position: relative;
     padding: 4rem 0 2rem;
-    text-align: center;
+    text-align: left;
     z-index: 1;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
                 url('../background.jpg') center center/cover no-repeat;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
 }
 
 .header-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    width: 100%;
+}
+
+.header-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.header-image {
+    flex: 0 0 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .logo-container {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .logo-icon {
@@ -204,6 +227,7 @@ body::before {
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
     animation: titleGlow 3s ease-in-out infinite;
+    text-align: left;
 }
 
 @keyframes titleGlow {
@@ -216,6 +240,7 @@ body::before {
     font-weight: 500;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .subtitle i {
@@ -233,11 +258,12 @@ body::before {
     color: var(--text-muted);
     margin-bottom: 2rem;
     line-height: 1.8;
+    text-align: left;
 }
 
 .feature-badges {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     flex-wrap: wrap;
 }
@@ -1062,6 +1088,31 @@ body::before {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+    .header-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .header-text {
+        max-width: 100%;
+    }
+    
+    .header-image {
+        flex: none;
+        order: -1;
+    }
+    
+    .main-title,
+    .subtitle,
+    .description {
+        text-align: center;
+    }
+    
+    .feature-badges {
+        justify-content: center;
+    }
+    
     .main-title {
         font-size: 2.5rem;
     }
@@ -1076,6 +1127,14 @@ body::before {
 }
 
 @media (max-width: 768px) {
+    .header-content {
+        gap: 1.5rem;
+    }
+    
+    .header-image {
+        flex: 0 0 300px;
+    }
+    
     .main-title {
         font-size: 2rem;
     }
@@ -1112,6 +1171,14 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    .header-content {
+        padding: 0 1rem;
+    }
+    
+    .header-image {
+        flex: 0 0 250px;
+    }
+    
     .main-title {
         font-size: 1.75rem;
     }
