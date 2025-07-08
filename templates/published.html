@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Published Websites</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">
+                <i class="fas fa-globe text-primary"></i>
+                Published Websites
+            </h1>
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create New Website
+            </a>
+        </div>
+        
+        {% if sites %}
+        <div class="row">
+            {% for site in sites %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-link"></i>
+                            Site ID: {{ site.site_id }}
+                        </h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i>
+                                Created: {{ site.created_at[:10] }}
+                            </small>
+                        </p>
+                        <div class="btn-group w-100" role="group">
+                            <a href="{{ site.url }}" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                            <a href="/download/{{ site.site_id }}" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-globe fa-3x text-muted mb-3"></i>
+            <h3 class="text-muted">No Published Websites</h3>
+            <p class="lead">You haven't published any websites yet.</p>
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create Your First Website
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

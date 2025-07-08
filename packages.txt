@@ -1,0 +1,6 @@
+# Required packages for AI Website Builder
+# Install with: pip install -r packages.txt
+
+flask>=2.3.0
+gunicorn>=21.0.0
+python-dotenv>=1.0.0

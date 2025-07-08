@@ -1,0 +1,176 @@
+from boltiotai import openai
+import os
+from flask import Flask, render_template_string, request
+
+openai.api_key = os.environ['OPENAI_API_KEY']
+
+app = Flask(__name__)
+
+def generate_course_content(course_title):
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert educational content generator creating comprehensive course outlines."},
+                {
+                    "role": "user",
+                    "content": f"""Generate a comprehensive course outline for '{course_title}' with the following specific requirements:
+
+1. Objective of the Course:
+- Create a concise, clear statement describing the purpose and goals of the course
+
+2. Sample Syllabus:
+- Develop a structured syllabus outline
+- Include main topics and modules to be taught
+- Provide a high-level overview of course content
+
+3. Three Measurable Outcomes (Bloom's Taxonomy):
+A. Knowledge Level Outcome: 
+- Specific outcome focusing on recalling and recognizing key facts and basic concepts
+
+B. Comprehension Level Outcome:
+- Outcome demonstrating understanding by explaining, interpreting, or summarizing concepts
+
+C. Application Level Outcome:
+- Outcome showing ability to use learned information in new or practical situations
+
+4. Assessment Methods:
+- Suggest diverse evaluation strategies
+- Provide methods to measure each of the three learning outcomes
+- Include both formative and summative assessment approaches
+
+5. Recommended Readings and Textbooks:
+- List 3-5 recommended resources
+- Include a mix of textbooks, academic articles, and online resources
+- Ensure resources are directly relevant to the course content
+
+Ensure all content is actionable, specific, and directly aligned with the course title."""
+                }
+            ]
+        )
+  
+        return response['choices'][0]['message']['content']
+    except Exception as e:
+        print(f"Error generating content: {e}")
+        return f"An error occurred: {str(e)}"
+
+@app.route("/", methods=["GET"])
+def index():
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Course Content Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #output {
+            white-space: pre-wrap;
+            background-color: #f8f9fa;
+            border: 1px solid #e2e6ea;
+            border-radius: 5px;
+            padding: 15px;
+            min-height: 300px;
+            margin-top: 20px;
+        }
+        .loading {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">AI Course Content Generator</h1>
+        <form id="content-form">
+            <div class="mb-3">
+                <label for="courseTitle" class="form-label">Enter Course Title</label>
+                <input type="text" id="courseTitle" class="form-control" placeholder="e.g., Introduction to Artificial Intelligence" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Generate Course Content</button>
+        </form>
+
+        <div id="output" class="mt-4">
+            Course content will appear here after generation...
+        </div>
+
+        <div class="mt-3 text-center">
+            <button id="copyBtn" class="btn btn-secondary" style="display:none;">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('content-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const courseTitle = document.getElementById('courseTitle').value.trim();
+            const outputBox = document.getElementById('output');
+            const copyBtn = document.getElementById('copyBtn');
+
+            // Show loading state
+            outputBox.innerHTML = '<p class="loading">Generating course content... Please wait.</p>';
+            copyBtn.style.display = 'none';
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `courseTitle=${encodeURIComponent(courseTitle)}`
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to generate content');
+                }
+
+                const content = await response.text();
+                outputBox.innerHTML = content;
+
+                // Show copy button
+                copyBtn.style.display = 'block';
+            } catch (error) {
+                outputBox.innerHTML = `<p class="text-danger">Error: ${error.message}. Please try again.</p>`;
+            }
+        });
+
+        // Copy to Clipboard functionality
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const outputText = document.getElementById('output').innerText;
+            navigator.clipboard.writeText(outputText).then(() => {
+                this.textContent = 'Copied!';
+                this.classList.remove('btn-secondary');
+                this.classList.add('btn-success');
+
+                setTimeout(() => {
+                    this.textContent = 'Copy to Clipboard';
+                    this.classList.remove('btn-success');
+                    this.classList.add('btn-secondary');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+    ''')
+
+@app.route("/", methods=["POST"])
+def generate():
+    course_title = request.form.get("courseTitle", "")
+    output = generate_course_content(course_title)
+    return output
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)

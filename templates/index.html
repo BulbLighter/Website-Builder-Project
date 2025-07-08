@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Builder - Powered by Advanced AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="gradient-bg"></div>
+        <div class="blur-circle white"></div>
+        <div class="blur-circle gray"></div>
+        <div class="blur-circle light"></div>
+        
+        <!-- Floating Device Icons -->
+        <div class="floating-devices">
+            <i class="fas fa-desktop device-icon" style="--delay: 0s; --duration: 25s;"></i>
+            <i class="fas fa-laptop device-icon" style="--delay: 2s; --duration: 30s;"></i>
+            <i class="fas fa-mobile-alt device-icon" style="--delay: 4s; --duration: 20s;"></i>
+            <i class="fas fa-tablet device-icon" style="--delay: 6s; --duration: 35s;"></i>
+            <i class="fas fa-gamepad device-icon" style="--delay: 8s; --duration: 28s;"></i>
+            <i class="fas fa-headphones device-icon" style="--delay: 10s; --duration: 32s;"></i>
+            <i class="fas fa-camera device-icon" style="--delay: 12s; --duration: 22s;"></i>
+            <i class="fas fa-tv device-icon" style="--delay: 14s; --duration: 26s;"></i>
+            <i class="fas fa-keyboard device-icon" style="--delay: 16s; --duration: 24s;"></i>
+            <i class="fas fa-mouse device-icon" style="--delay: 18s; --duration: 29s;"></i>
+            <i class="fas fa-microchip device-icon" style="--delay: 20s; --duration: 31s;"></i>
+            <i class="fas fa-hdd device-icon" style="--delay: 22s; --duration: 27s;"></i>
+            <i class="fas fa-memory device-icon" style="--delay: 24s; --duration: 33s;"></i>
+            <i class="fas fa-wifi device-icon" style="--delay: 26s; --duration: 21s;"></i>
+            <i class="fas fa-bluetooth device-icon" style="--delay: 28s; --duration: 34s;"></i>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header-section">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                </div>
+                <h1 class="main-title">AI Website Builder</h1>
+                <p class="subtitle">
+                    <i class="fas fa-sparkles"></i>
+                    Powered by Advanced AI
+                    <i class="fas fa-sparkles"></i>
+                </p>
+                <p class="description">
+                    Create stunning, professional websites in seconds using our cutting-edge AI technology. 
+                    From concept to deployment, our intelligent system handles everything while you focus on your vision.
+                </p>
+                <div class="feature-badges">
+                    <span class="badge-item">
+                        <i class="fas fa-bolt"></i>
+                        Lightning Fast
+                    </span>
+                    <span class="badge-item">
+                        <i class="fas fa-star"></i>
+                        Production Ready
+                    </span>
+                    <span class="badge-item">
+                        <i class="fas fa-brain"></i>
+                        AI Powered
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left Column - Configuration -->
+                <div class="col-lg-6 config-column">
+                    <div class="glass-container">
+                        <h2 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            Website Configuration
+                        </h2>
+                    
+                        <form id="websiteForm">
+                            <div class="form-group">
+                                <label for="title" class="form-label">Website Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="My Awesome Website" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="4" placeholder="Describe your website purpose and goals in detail..."></textarea>
+                            </div>
+                            
+                            <!-- Color Pickers -->
+                            <div class="color-section">
+                                <h3 class="subsection-title">Color Theme</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="color-picker-group">
+                                            <label for="primaryColor" class="form-label">Primary Color</label>
+                                            <div class="color-input-wrapper">
+                                                <input type="color" class="form-control color-picker" id="primaryColor" value="#6366f1">
+                                                <input type="text" class="form-control color-text" id="primaryColorText" value="#6366f1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="color-picker-group">
+                                            <label for="secondaryColor" class="form-label">Secondary Color</label>
+                                            <div class="color-input-wrapper">
+                                                <input type="color" class="form-control color-picker" id="secondaryColor" value="#8b5cf6">
+                                                <input type="text" class="form-control color-text" id="secondaryColorText" value="#8b5cf6">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Style Theme Selection -->
+                            <div class="theme-section">
+                                <h3 class="subsection-title">Style Theme</h3>
+                                <div class="theme-cards">
+                                    <div class="theme-card" data-theme="modern">
+                                        <div class="theme-preview modern-preview"></div>
+                                        <h4>Modern</h4>
+                                        <p>Clean, contemporary design</p>
+                                    </div>
+                                    <div class="theme-card" data-theme="classic">
+                                        <div class="theme-preview classic-preview"></div>
+                                        <h4>Classic</h4>
+                                        <p>Timeless, professional look</p>
+                                    </div>
+                                    <div class="theme-card" data-theme="minimal">
+                                        <div class="theme-preview minimal-preview"></div>
+                                        <h4>Minimal</h4>
+                                        <p>Simple, focused design</p>
+                                    </div>
+                                    <div class="theme-card" data-theme="creative">
+                                        <div class="theme-preview creative-preview"></div>
+                                        <h4>Creative</h4>
+                                        <p>Bold, artistic approach</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Section Selection -->
+                            <div class="sections-selection">
+                                <h3 class="subsection-title">Website Sections</h3>
+                                <div class="section-toggles">
+                                    <div class="section-toggle active" data-section="hero">
+                                        <i class="fas fa-home"></i>
+                                        <span>Hero Section</span>
+                                    </div>
+                                    <div class="section-toggle active" data-section="about">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>About Us</span>
+                                    </div>
+                                    <div class="section-toggle active" data-section="services">
+                                        <i class="fas fa-cog"></i>
+                                        <span>Services</span>
+                                    </div>
+                                    <div class="section-toggle active" data-section="contact">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Contact</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="generate-btn">
+                                <i class="fas fa-bolt"></i>
+                                <span class="btn-text">Generate Website</span>
+                                <div class="btn-loading" style="display: none;">
+                                    <div class="spinner"></div>
+                                    <span>Generating Website...</span>
+                                </div>
+                            </button>
+                        </form>
+                        
+                        <div class="additional-options mt-3">
+                            <a href="/sites" class="view-sites-btn">
+                                <i class="fas fa-list"></i>
+                                View Published Sites
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Right Column - Preview -->
+                <div class="col-lg-6 preview-column">
+                    <div class="glass-container">
+                        <div class="preview-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-eye"></i>
+                                Website Preview
+                            </h2>
+                            <div class="tab-navigation">
+                                <button class="tab-btn active" data-tab="preview">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                                <button class="tab-btn" data-tab="html">
+                                    <i class="fas fa-code" style="color: #f97316;"></i>
+                                    HTML
+                                </button>
+                                <button class="tab-btn" data-tab="css">
+                                    <i class="fas fa-code" style="color: #3b82f6;"></i>
+                                    CSS
+                                </button>
+                                <button class="tab-btn" data-tab="js">
+                                    <i class="fas fa-code" style="color: #eab308;"></i>
+                                    JavaScript
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <!-- Tab Content -->
+                        <div class="tab-content">
+                            <!-- Preview Tab -->
+                            <div class="tab-pane active" id="preview-tab">
+                                <div id="welcomeMessage" class="welcome-preview">
+                                    <div class="welcome-icon">
+                                        <i class="fas fa-wand-magic-sparkles"></i>
+                                    </div>
+                                    <h3>Ready to Create Magic</h3>
+                                    <p>Configure your website settings and watch AI bring your vision to life</p>
+                                    <div class="preview-placeholder">
+                                        <div class="placeholder-lines">
+                                            <div class="line"></div>
+                                            <div class="line"></div>
+                                            <div class="line short"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="previewFrame" class="preview-iframe" style="display: none;"></div>
+                            </div>
+                            
+                            <!-- Code Tabs -->
+                            <div class="tab-pane" id="html-tab">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span>HTML Code</span>
+                                        <button class="copy-btn" data-code-type="html" style="display: none;">
+                                            <i class="fas fa-copy"></i>
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <pre class="code-block"><code id="htmlCode">No HTML code generated yet</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane" id="css-tab">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span>CSS Code</span>
+                                        <button class="copy-btn" data-code-type="css" style="display: none;">
+                                            <i class="fas fa-copy"></i>
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <pre class="code-block"><code id="cssCode">No CSS code generated yet</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane" id="js-tab">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span>JavaScript Code</span>
+                                        <button class="copy-btn" data-code-type="js" style="display: none;">
+                                            <i class="fas fa-copy"></i>
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <pre class="code-block"><code id="jsCode">No JavaScript code generated yet</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="action-buttons" id="actionButtons" style="display: none;">
+                            <button class="action-btn download-btn" id="downloadHtmlBtn">
+                                <i class="fas fa-file-code"></i>
+                                Download HTML
+                            </button>
+                            <button class="action-btn download-zip-btn" id="downloadZipBtn">
+                                <i class="fas fa-file-zipper"></i>
+                                Download ZIP
+                            </button>
+                            <button class="action-btn publish-btn" id="publishBtn">
+                                <i class="fas fa-globe"></i>
+                                Publish Website
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="ai-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <h3 class="loading-title">AI is crafting your website...</h3>
+            <p class="loading-subtitle">Analyzing your requirements and generating code</p>
+            <div class="progress-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content success-modal">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2>Website Published Successfully!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Your website is now live and accessible at:</p>
+                <div class="url-container">
+                    <a href="#" id="publishedUrl" target="_blank" class="published-link"></a>
+                    <button class="copy-url-btn" id="copyUrlBtn">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal primary" onclick="closeModal('successModal')">Continue Building</button>
+                <a href="/sites" class="btn-modal secondary">View All Sites</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content error-modal">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                <h2>Oops! Something went wrong</h2>
+            </div>
+            <div class="modal-body">
+                <p id="errorText">An unexpected error occurred</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal primary" onclick="closeModal('errorModal')">Try Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
