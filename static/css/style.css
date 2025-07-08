@@ -153,15 +153,16 @@ body::before {
 /* Header Section */
 .header-section {
     position: relative;
-    padding: 4rem 0 2rem;
+    padding: 2rem 0 1rem;
     text-align: center;
     z-index: 1;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
                 url('../background.jpg') center center/cover no-repeat;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 3rem;
 }
 
 .header-content {
@@ -171,8 +172,9 @@ body::before {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 2rem;
 }
 
 .logo-container {
